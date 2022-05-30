@@ -7,7 +7,7 @@ function convertLetterToNumber(str) {
   return out;
 }
 
-console.log(convertLetterToNumber("ZY"));
+console.log(convertLetterToNumber("AC"));
 
 // 0+(26   * (26^2) = 676
 // 676+(25 * (26^0) = 701
