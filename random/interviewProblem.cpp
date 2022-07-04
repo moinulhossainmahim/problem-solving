@@ -3,13 +3,11 @@
 using namespace std;
 
 int main() {
-  int n,i,a=0,b=0,l=0,o=0,nn=0,count=0;
+  int size=16;
+  int i,a=0,b=0,l=0,o=0,nn=0,count=0;
   string s1;
-  cout<<"Enter size of the string"<<endl;
-  cin>>n;
-  cout<<"Enter the string"<<endl;
-  cin>>s1;
-  for(i=0; i<n; i++) {
+  s1="BAOOLLNNOLOLGBAX";
+  for(i=0; i<size; i++) {
     if(s1[i]=='A')a++;
     else if(s1[i]=='B')b++;
     else if(s1[i]=='L')l++;
