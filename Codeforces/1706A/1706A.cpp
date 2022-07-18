@@ -11,10 +11,8 @@ int main() {
     int n,m,n1;
     cin >> n >> m;
     vector<string> v;
-    string s,s2,s3;
-    for(int i=0; i<m; i++) {
-      s+='B';
-    }
+    string s(m, 'B');
+    string s2,s3;
     for(int i=0; i<n; i++) {
       cin >> n1;
       s2=s;
