@@ -21,8 +21,8 @@ int main() {
     cnt[n]++;
   }
   int ans=0;
-  for(int i=0; i<t; i++) {
-    ans=max(ans, cnt[i]);
+  for(auto u : cnt) {
+    ans=max(ans, u.second);
   }
   cout << ans << endl;
   return 0;
