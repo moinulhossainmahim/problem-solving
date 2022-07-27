@@ -34,50 +34,79 @@ const ll infLL = 9000000000000000000;
 #define fraction() cout.unsetf(ios::floatfield); cout.precision(10); cout.setf(ios::fixed,ios::floatfield);
 #define file() freopen("input.txt","r",stdin);freopen("output.txt","w",stdout);
 
-const int mx=1e5+123;
-ll dis[mx];
+const int mx=1e7+123;
 vii adj[mx];
+ll dis[mx];
+int parent[mx];
 
 void dijkstra(int s, int n) {
-  for(int i=1; i<=n; i++) dis[i]=infLL;
-  priority_queue<pll, vll, greater<pll>> pq;
+  for(int i=0; i<=n; i++) dis[i]=infLL;
   dis[s]=0;
+  priority_queue<pll, vll, greater<pll>> pq;
   pq.push({0, s});
   while(!pq.empty()) {
     ll node = pq.top().S;
     ll currD = pq.top().F;
     pq.pop();
 
-    if(dis[node]<currD) continue;
-    
+    if(dis[node] < currD) continue;
+
     for(auto p : adj[node]) {
-      int v=p.F;
-      int w=p.S;
+      int v = p.F;
+      int w = p.S;
       if(currD+w<dis[v]) {
         dis[v]=currD+w;
         pq.push({dis[v], v});
+        parent[v]=node;
       }
     }
   }
 }
 
-class Solution {
-public:
-    int networkDelayTime(vector<vector<int>>& times, int n, int k) {
-        optimize();
-        for(int i=0; i<=n; i++) adj[i].clear();                
-        for(auto u : times) {
-            adj[u[0]].PB({u[1], u[2]});
-        }
-        
-        dijkstra(k, n);
-        
-        ll MX=-1;
-        for(int i=0; i<=n; i++) {
-            MX=max(dis[i], MX);
-        }
-        
-        if(MX==infLL) MX=-1;
-        return MX;
-    }
-};
+int main() {
+  optimize();
+  int s,t;
+  cin >> s >> t;
+  for(int i=1; i<=t; i++) {
+    int u,v,w;
+    cin >> u >> v >> w;
+    adj[u].PB({v, w});
+    adj[v].PB({u, w});
+  }
+
+  dijkstra(1, s);
+
+  if(dis[s]==infLL) return cout << "-1", 0;  
+
+  int u = s;
+  vi ans = {u};
+  while(parent[u] != 0) {
+    ans.PB(parent[u]);
+    u=parent[u];
+  }
+
+  reverse(all(ans));
+  for(auto u : ans) cout << u << " ";
+  cout << endl;
+}
+
+/*
+  3 3
+  1 2 1
+  3 1 2
+  2 3 1
+
+
+  10 10
+  1 5 12
+  2 4 140
+  2 10 149
+  3 6 154
+  3 7 9
+  3 8 226
+  3 10 132
+  4 10 55
+  5 8 33
+  7 8 173
+
+*/
