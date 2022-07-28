@@ -71,6 +71,7 @@ void dijkstra(vector<vi> &grid, int n, int m) {
 }
 
 int main() {
+  optimize();
   int t;
   cin >> t;
   while(t--) {
