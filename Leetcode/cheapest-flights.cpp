@@ -37,80 +37,42 @@ const ll infLL = 9000000000000000000;
 const int mx=1e7+123;
 vii adj[mx];
 ll dis[mx];
-int parent[mx];
 
-void dijkstra(int s, int n) {
+void dijkstra(int s, int n, int k) {
   for(int i=0; i<=n; i++) dis[i]=infLL;
+  priority_queue<vl, vector<vl>, greater<vl>> pq;
   dis[s]=0;
-  priority_queue<pll, vll, greater<pll>> pq;
-  pq.push({0, s});
+  pq.push({0, 0, s});
   while(!pq.empty()) {
-    ll node = pq.top().S;
-    ll currD = pq.top().F;
+    int stops = pq.top()[0];
+    ll currD = pq.top()[1];
+    int node = pq.top()[2];
     pq.pop();
-
-    if(dis[node] < currD) continue;
 
     for(auto p : adj[node]) {
       int v = p.F;
       int w = p.S;
-      if(currD+w<dis[v]) {
+      if(currD+w<dis[v] && stops<=k) {
         dis[v]=currD+w;
-        pq.push({dis[v], v});
-        parent[v]=node;
+        pq.push({stops+1, dis[v], v});
       }
     }
   }
 }
 
-int main() {
-  optimize();
-  int s,t;
-  cin >> s >> t;
-  for(int i=1; i<=t; i++) {
-    int u,v,w;
-    cin >> u >> v >> w;
-    adj[u].PB({v, w});
-    adj[v].PB({u, w});
-  }
 
-  dijkstra(1, s);
-
-  if(dis[s]==infLL) return cout << "-1", 0;  
-
-  int u = s;
-  vi ans = {u};
-  while(parent[u] != 0) {
-    ans.PB(parent[u]);
-    u=parent[u];
-  }
-
-  reverse(all(ans));
-  for(auto u : ans) cout << u << " ";
-  cout << endl;
-}
-
-/*
-
-  3 3
-  1 2 1
-  3 1 2
-  2 3 1
-
-  // ans 1 3
-
-  10 10
-  1 5 12
-  2 4 140
-  2 10 149
-  3 6 154
-  3 7 9
-  3 8 226
-  3 10 132
-  4 10 55
-  5 8 33
-  7 8 173
-
-  // ans 1 5 8 7 3 10
-
-*/
+class Solution {
+public:
+    int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int k) {
+        optimize();
+        for(int i=0; i<=n; i++) adj[i].clear();
+        for(auto u : flights) {
+            adj[u[0]].PB({u[1], u[2]});
+        }
+                
+        dijkstra(src, n, k);
+        
+        if(dis[dst]==infLL) dis[dst]=-1;
+        return dis[dst];
+    }
+};
