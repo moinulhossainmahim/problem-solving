@@ -1,7 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-
 typedef long long ll;
 typedef vector<int> vi;
 typedef vector<ll> vl;
@@ -56,8 +55,8 @@ int dx[] = { 0, 0, +1, -1, -1  +1, -1, +1 };
 int dy[] = { +1, -1, 0, 0, -1, +1, +1, -1 };
 
 const int mx=1e4+123;
-vii adj[3][mx];
-ll dist[3][mx];
+vii adj[2][mx];
+ll dist[2][mx];
 
 struct info {
   int u, v, w;
@@ -110,7 +109,7 @@ int main()
       adj[1][v].PB({ u, w });
       edge.PB({ u, v, w });
     }
-
+    
     dijkstra(s, n, 0);
     dijkstra(t, n, 1);
 
