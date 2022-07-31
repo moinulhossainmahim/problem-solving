@@ -44,21 +44,16 @@ ll lcm ( ll a, ll b ) { return a * ( b / gcd ( a, b ) ); }
 int dx[] = { 0, 0, +1, -1, -1  +1, -1, +1 };
 int dy[] = { +1, -1, 0, 0, -1, +1, +1, -1 };
 
+
 int main() {
   optimize();
   int t;
   cin >> t;
   while(t--) {
-    int n,x,y,flag=1;
-    cin >> n;
-    cin >> x;
-    for(int i=1; i<n; i++) {
-      cin >> y;
-      if(y%x!=0){
-        flag=0;
-      }
-    }
-    if(flag) cout << "YES" << endl;
-    else cout << "NO" << endl;
+    int a, b, c, d;
+    cin >> a >> b >> c >> d;
+    if(a==0 && b==0 && c==0 && d==0) cout << 0 << endl;
+    else if(a==1 && b==1 && c==1 && d==1) cout << 2 << endl;
+    else cout << 1 << endl;  
   }
 }
