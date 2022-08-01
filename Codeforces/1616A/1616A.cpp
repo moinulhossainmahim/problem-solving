@@ -67,4 +67,5 @@ int main() {
   while(t--) {
     solve();
   }
+  cerr << "time: " << clock()/ 1000.00 << "s\n";
 }
