@@ -51,31 +51,17 @@ int main() {
   while(t--) {
     int n;
     cin >> n;
-    map<int, int> m;
-    vector<int> v;
+    vi v(n);
     for(int i=0; i<n; i++) {
-      int a;
-      cin >> a;
-      v.PB(a);
-      m[a]++;
+      cin >> v[i];
     }
-    int move=0;
-    for(int i=0; i<n; i++) {
-      
+    set<int> s;
+    for(int i=n-1; i>=0; i--) {
+      if(s.find(v[i]) != s.end()) {
+        break;
+      }
+      s.insert(v[i]);
     }
-    cout << move << endl;
+    cout << n-s.size() << endl;
   }
 }
-
-
-/* 5
-4
-3 1 4 3
-5
-1 1 1 1 1
-1
-1
-6
-6 5 4 3 2 1
-7
-1 2 1 7 1 2 1 */
