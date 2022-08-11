@@ -114,70 +114,22 @@ ll lcm(ll a, ll b) { return a * (b / gcd(a, b)); }
 int dx[] = {0, 0, +1, -1, -1 + 1, -1, +1};
 int dy[] = {+1, -1, 0, 0, -1, +1, +1, -1};
 
-const int mx = 2512;
-
-struct edge {
-  int u, v, w;
-};
-
-ll dist[mx];
-int par[mx];
-vector<edge> e;
-
-vi bellmanFord(int s, int n, int m) {
-  vi cycle;
-  for (int i = 1; i <= n; i++)
-    dist[i] = infLL;
-  dist[s] = 0;
-  int x = -1;
-  for (int i = 1; i <= n; i++) {
-    x = -1;
-    for (int j = 0; j < m; j++) {
-      int u = e[j].u;
-      int v = e[j].v;
-      int w = e[j].w;
-
-      if (dist[u] + w < dist[v]) {
-        dist[v] = dist[u] + w;
-        par[v] = u;
-        x = v;
-      }
-    }
-  }
-  if (x == -1)
-    return cycle;
-
-  for (int i = 1; i <= n; i++) {
-    x = par[x];
-  }
-
-  int y = x;
-  while (y != x || sz(cycle) == 0) {
-    cycle.PB(y);
-    y = par[y];
-  }
-
-  cycle.PB(x);
-  reverse(all(cycle));
-  return cycle;
-}
-
 int main() {
-  optimize();
-  int n, m;
-  cin >> n >> m;
-  for (int i = 1; i <= m; i++) {
-    int u, v, w;
-    cin >> u >> v >> w;
-    e.PB({u, v, w});
-  }
-  vi ans = bellmanFord(1, n, m);
-  if (sz(ans) == 0)
-    cout << "NO\n";
-  else {
-    cout << "YES\n";
-    for (auto u : ans)
-      cout << u << " ";
-    cout << endl;
-  }
+  
+  return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
