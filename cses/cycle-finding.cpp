@@ -89,6 +89,7 @@ ostream &operator<<(ostream &os, const map<F, S> &v) {
   }
   return os << "]";
 }
+
 #define dbg(args...)                                                           \
   do {                                                                         \
     cerr << #args << " : ";                                                    \
@@ -181,3 +182,5 @@ int main() {
     cout << endl;
   }
 }
+
+
