@@ -2,12 +2,11 @@
 
 using namespace std;
 
-int nums[200];
-
 int main() {
   int n;
   cin >> n;
   int a[n];
+  long long nums[200] = {0};
   for (int i = 0; i < n; i++) {
     cin >> a[i];
     nums[a[i] % 200]++;
