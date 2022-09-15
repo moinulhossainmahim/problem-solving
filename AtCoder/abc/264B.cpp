@@ -17,7 +17,8 @@ typedef pair<int, int> pii;
 
 int main() {
   ios::sync_with_stdio(false);
-  cin.tie(0);
-  int tt;
-  cin >> tt;
+  cin.tie(nullptr);
+  int r, c;
+  cin >> r >> c;
+  cout << ((max(abs(c - 8), abs(r - 8)) % 2) ? "black\n" : "white\n");
 }
