@@ -21,19 +21,19 @@ int main() {
   int tt;
   cin >> tt;
   while (tt--) {
-    int n, m;
-    cin >> n >> m;
-    string s, t;
-    cin >> s >> t;
-    char tmp = t[0];
-    while (s.size() > t.size()) {
-      if (s[0] == tmp) {
-        s[1] = tmp;
-        s.erase(s.begin());
-      } else {
-        s.erase(s.begin());
-      }
+    int n, k;
+    cin >> n >> k;
+    k %= 4;
+    if (k == 0) {
+      cout << "NO\n";
+      continue;
     }
-    cout << ((s == t) ? "YES\n" : "NO\n");
+    cout << "YES\n";
+    for (int i = 1; i <= n; i += 2) {
+      if (k == 2 && i % 4 != 3)
+        cout << i + 1 << " " << i << '\n';
+      else
+        cout << i << " " << i + 1 << '\n';
+    }
   }
 }

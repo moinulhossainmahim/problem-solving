@@ -3,7 +3,6 @@
   Author: Moinul Hossain
   Northern University Bangladesh
 */
-
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -21,19 +20,25 @@ int main() {
   int tt;
   cin >> tt;
   while (tt--) {
-    int n, m;
-    cin >> n >> m;
-    string s, t;
-    cin >> s >> t;
-    char tmp = t[0];
-    while (s.size() > t.size()) {
-      if (s[0] == tmp) {
-        s[1] = tmp;
-        s.erase(s.begin());
-      } else {
-        s.erase(s.begin());
+    int n, k;
+    cin >> n >> k;
+    ll arr[n];
+    ll res = 0;
+    for (int i = 0; i < n; i++) {
+      cin >> arr[i];
+    }
+
+    if (k + 1 == n || k == n) {
+      for (int i = 0; i < n; i++)
+        res += arr[i];
+      cout << res << endl;
+      continue;
+    }
+    for (int i = 0; i < n; i++) {
+      if (arr[i] % k != 0) {
+        res += arr[i];
       }
     }
-    cout << ((s == t) ? "YES\n" : "NO\n");
+    cout << res << endl;
   }
 }
