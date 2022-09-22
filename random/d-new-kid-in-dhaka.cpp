@@ -34,13 +34,6 @@ const ll infLL = 9000000000000000000;
   ios_base::sync_with_stdio(0);                                                \
   cin.tie(0);                                                                  \
   cout.tie(0);
-#define fraction()                                                             \
-  cout.unsetf(ios::floatfield);                                                \
-  cout.precision(10);                                                          \
-  cout.setf(ios::fixed, ios::floatfield);
-#define file()                                                                 \
-  freopen("input.txt", "r", stdin);                                            \
-  freopen("output.txt", "w", stdout);
 
 const int mx = 1e7 + 123;
 vii adj[mx];
