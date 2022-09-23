@@ -25,15 +25,20 @@ int main() {
     cin >> n;
     string s;
     cin >> s;
-    int ans = 0;
-    for (int i = 0; i < n; i++) {
-      if (s[i] == '0') {
-        for (int j = i; j < n; j = j + (i + 1)) {
-          if (s[j] == '0') {
-            s[j] = '1';
-            ans += (i + 1);
-          }
-        }
+    s = "@" + s;
+    ll ans = 0;
+    vi vis(n + 1, 0);
+    for (int i = 1; i <= n; i++) {
+      if (s[i] == '1')
+        vis[i] = 2;
+    }
+    for (int i = 1; i <= n; i++) {
+      for (int j = i; j <= n; j += i) {
+        if (vis[j] == 0) {
+          vis[j] = 1;
+          ans += i;
+        } else if (vis[j] == 2)
+          break;
       }
     }
     cout << ans << '\n';
